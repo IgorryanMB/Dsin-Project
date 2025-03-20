@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSIN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .fundo {
+            background-color: black;
+        }
+        .fundo-card {
+            background-color: #38454d;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: scale(0.9);
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .form-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .form-container.active {
+            display: block;
+            opacity: 1;
+        }
+        .fonte-color {
+            color: black;
+        }
+        .btn {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .light-mode {
+            background-color: white;
+            color: black;
+        }
+        .light-mode .fundo-card {
+            background-color: #f8f9fa;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .light-mode .fonte-color {
+            color: black !important;
+        }
+        .light-mode .btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+    </style>
+</head>
+<body class="fundo">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-10 d-flex justify-content-center">
+                <div class="card text-center p-3 m-1 fundo-card">
+                    <img class="card-img-top mx-auto" src="dsin.jpg" alt="Imagem do Card">
+                    <div class="card-body">
+                        <h3 class="fonte-color">Bem-vindo</h3>
+                        <p class="fonte-color">Escolha uma das opções abaixo para continuar:</p>
+                        <div class="btn-group mb-3 w-100 d-flex justify-content-center gap-3">
+                            <button class="btn btn-primary w-50 fonte-color" id="loginBtn">Entrar</button>
+                            <button class="btn btn-success w-50 fonte-color" id="cadastroBtn">Cadastrar</button>
+                        </div>
+                        <div id="loginForm" class="form-container active">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label fonte-color">Login Corporativo</label>
+                                    <input type="text" class="form-control fonte-color border-0 border-bottom bg-transparent" style="outline: none; box-shadow: none;" id="loginEmail" placeholder="Digite o Login" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginSenha" class="form-label fonte-color">Senha</label>
+                                    <input type="password" class="form-control fonte-color border-0 border-bottom bg-transparent" style="outline: none; box-shadow: none;" id="loginSenha" placeholder="Digite sua senha" required>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-warning w-50 fonte-color">Entrar</button>
+                                    <button id="toggleTheme" class="btn btn-secondary w-50">Claro</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="cadastroForm" class="form-container">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="nome" class="form-label fonte-color">Nome Completo</label>
+                                    <input type="text" class="form-control fonte-color border-0 border-bottom bg-transparent" style="outline: none; box-shadow: none;" id="nome" placeholder="Digite seu nome" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fonte-color">Email</label>
+                                    <input type="email" class="form-control fonte-color border-0 border-bottom bg-transparent" style="outline: none; box-shadow: none;" id="email" placeholder="Digite seu email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="senha" class="form-label fonte-color">Senha</label>
+                                    <input type="password" class="form-control fonte-color border-0 border-bottom bg-transparent" style="outline: none; box-shadow: none;" id="senha" placeholder="Digite sua senha" required>
+                                </div>
+                                <button type="submit" class="btn btn-warning w-100">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            document.getElementById('loginForm').classList.add('active');
+            document.getElementById('cadastroForm').classList.remove('active');
+        });
+        
+        document.getElementById('cadastroBtn').addEventListener('click', function() {
+            document.getElementById('cadastroForm').classList.add('active');
+            document.getElementById('loginForm').classList.remove('active');
+        });
+
+        document.getElementById('toggleTheme').addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            this.textContent = document.body.classList.contains('light-mode') ? 'Escuro' : 'Claro';
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
